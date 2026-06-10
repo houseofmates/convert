@@ -10,7 +10,11 @@ export default defineConfig({
       "@bokuweb/zstd-wasm"
     ]
   },
-  base: "/convert/",
+  base: "/",
+  server: {
+    port: 5173,
+    host: true
+  },
   plugins: [
     viteStaticCopy({
       targets: [

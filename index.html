@@ -3,47 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <title>Convert to it!</title>
-  
+  <title>convert</title>
+
   <meta name="url" content="https://convert.to.it">
   <meta name="identifier-URL" content="https://convert.to.it">
   <meta name="og:url" content="https://convert.to.it"/>
-  <meta name="og:title" content="Convert to it!"/>
-  <meta name="og:site_name" content="Convert to it!"/>
-  <meta name="og:description" content="Truly universal online file converter. Private, on-device conversion across mediums."/>
+  <meta name="og:title" content="convert"/>
+  <meta name="og:site_name" content="convert"/>
+  <meta name="og:description" content="truly universal online file converter. private, on-device conversion across mediums."/>
   <meta name="og:image" content="https://p2r3.github.io/convert/assets/favicon-Bfod-rsk.ico"/>
-  <meta name="theme-color" content="#1C77FF"/>
+  <meta name="theme-color" content="#050505"/>
   <meta name="og:type" content="website"/>
+
+  <script>
+    (function() {
+      var hostname = window.location.hostname;
+      if (hostname.endsWith('.houseofmates.space')) {
+        var subdomain = hostname.split('.')[0].toLowerCase();
+        document.title = subdomain;
+        var faviconMap = {
+          'dupe': '/favicon-dupe.png',
+          'home': '/favicon-home-subdomain.png',
+          'pkm': '/favicon-houseofmates.png'
+        };
+        var favicon = faviconMap[subdomain] || '/favicon.png';
+        var link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+        link.rel = 'icon';
+        link.href = favicon;
+        document.head.appendChild(link);
+      }
+    })();
+  </script>
 </head>
 <body>
 
   <input id="file-input" type="file">
 
-  <a id="commit-id" href="https://github.com/p2r3/convert"></a>
+  <a id="commit-id" href="https://github.com/houseofmates/convert"></a>
 
   <div id="file-area">
-    <h2>Click to add your file</h2>
+    <h2>click to add your file</h2>
     <p id="drop-hint-text">or drag and drop it here</p>
   </div>
   <div id="side-panel">
-    <button id="mode-button">Advanced mode</button>
+    <button id="mode-button">advanced mode</button>
   </div>
 
   <div id="format-containers">
 
     <div id="from-container" class="format-container">
-      <h2>Convert from:</h2>
-      <input type="text" id="search-from" class="search" placeholder="Search">
+      <h2>convert from:</h2>
+      <input type="text" id="search-from" class="search" placeholder="search">
       <div id="from-list" class="format-list">
 
       </div>
     </div>
 
     <div id="to-container" class="format-container">
-      <h2>Convert to:</h2>
-      <input type="text" id="search-to" class="search" placeholder="Search">
+      <h2>convert to:</h2>
+      <input type="text" id="search-to" class="search" placeholder="search">
       <div id="to-list" class="format-list">
 
       </div>
@@ -51,11 +74,11 @@
 
   </div>
 
-  <button id="convert-button" class="disabled">Convert</button>
+  <button id="convert-button" class="disabled">convert</button>
 
   <div id="popup-bg"></div>
   <div id="popup">
-    <h2>Loading tools...</h2>
+    <h2>loading tools...</h2>
   </div>
 
   <script type="module" src="src/main.ts"></script>

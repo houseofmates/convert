@@ -99,7 +99,7 @@ const fileSelectHandler = (event: Event) => {
   if (files.length === 0) return;
 
   if (files.some(c => c.type !== files[0].type)) {
-    return alert("All input files must be of the same type.");
+    return alert("all input files must be of the same type.");
   }
   files.sort((a, b) => a.name === b.name ? 0 : (a.name < b.name ? -1 : 1));
   selectedFiles = files;
@@ -296,8 +296,8 @@ async function buildOptionList () {
     window.supportedFormatCache = new Map(cacheJSON);
   } catch {
     console.warn(
-      "Missing supported format precache.\n\n" +
-      "Consider saving the output of printSupportedFormatCache() to cache.json."
+      "missing supported format precache.\n\n" +
+      "consider saving the output of printsupportedformatcache() to cache.json."
     );
   } finally {
     await buildOptionList();
@@ -308,11 +308,11 @@ async function buildOptionList () {
 ui.modeToggleButton.addEventListener("click", () => {
   simpleMode = !simpleMode;
   if (simpleMode) {
-    ui.modeToggleButton.textContent = "Advanced mode";
-    document.body.style.setProperty("--highlight-color", "#1C77FF");
+    ui.modeToggleButton.textContent = "advanced mode";
+    document.body.style.setProperty("--highlight-color", "#f6b012");
   } else {
-    ui.modeToggleButton.textContent = "Simple mode";
-    document.body.style.setProperty("--highlight-color", "#FF6F1C");
+    ui.modeToggleButton.textContent = "simple mode";
+    document.body.style.setProperty("--highlight-color", "#3c9fdd");
   }
   buildOptionList();
 });
@@ -338,8 +338,8 @@ async function attemptConvertPath (files: FileData[], path: ConvertPathNode[]) {
     }
   }
 
-  ui.popupBox.innerHTML = `<h2>Finding conversion route...</h2>
-    <p>Trying <b>${pathString}</b>...</p>`;
+  ui.popupBox.innerHTML = `<h2>finding conversion route...</h2>
+    <p>trying <b>${pathString}</b>...</p>`;
 
   for (let i = 0; i < path.length - 1; i ++) {
     const handler = path[i + 1].handler;
@@ -378,8 +378,8 @@ async function attemptConvertPath (files: FileData[], path: ConvertPathNode[]) {
       deadEndAttempts.push(deadEndPath);
       window.traversionGraph.addDeadEndPath(path.slice(0, i + 2));
 
-      ui.popupBox.innerHTML = `<h2>Finding conversion route...</h2>
-        <p>Looking for a valid path...</p>`;
+      ui.popupBox.innerHTML = `<h2>finding conversion route...</h2>
+        <p>looking for a valid path...</p>`;
       await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
       return null;
@@ -422,14 +422,14 @@ ui.convertButton.onclick = async function () {
   const inputFiles = selectedFiles;
 
   if (inputFiles.length === 0) {
-    return alert("Select an input file.");
+    return alert("select an input file.");
   }
 
   const inputButton = document.querySelector("#from-list .selected");
-  if (!inputButton) return alert("Specify input file format.");
+  if (!inputButton) return alert("specify input file format.");
 
   const outputButton = document.querySelector("#to-list .selected");
-  if (!outputButton) return alert("Specify output file format.");
+  if (!outputButton) return alert("specify output file format.");
 
   const inputOption = allOptions[Number(inputButton.getAttribute("format-index"))];
   const outputOption = allOptions[Number(outputButton.getAttribute("format-index"))];
@@ -453,14 +453,14 @@ ui.convertButton.onclick = async function () {
       inputFileData.push({ name: inputFile.name, bytes: inputBytes });
     }
 
-    window.showPopup("<h2>Finding conversion route...</h2>");
+    window.showPopup("<h2>finding conversion route...</h2>");
     // Delay for a bit to give the browser time to render
     await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
 
     const output = await window.tryConvertByTraversing(inputFileData, inputOption, outputOption);
     if (!output) {
       window.hidePopup();
-      alert("Failed to find conversion route.");
+      alert("failed to find conversion route.");
       return;
     }
 
@@ -469,15 +469,15 @@ ui.convertButton.onclick = async function () {
     }
 
     window.showPopup(
-      `<h2>Converted ${inputOption.format.format} to ${outputOption.format.format}!</h2>` +
-      `<p>Path used: <b>${output.path.map(c => c.format.format).join(" → ")}</b>.</p>\n` +
-      `<button onclick="window.hidePopup()">OK</button>`
+      `<h2>converted ${inputOption.format.format} to ${outputOption.format.format}!</h2>` +
+      `<p>path: <b>${output.path.map(c => c.format.format).join(" → ")}</b>.</p>\n` +
+      `<button onclick="window.hidePopup()">ok</button>`
     );
 
   } catch (e) {
 
     window.hidePopup();
-    alert("Unexpected error while routing:\n" + e);
+    alert("unexpected error while routing:\n" + e);
     console.error(e);
 
   }
