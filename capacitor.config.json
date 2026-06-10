@@ -1,0 +1,9 @@
+{
+  "appId": "space.houseofmates.convert",
+  "appName": "convert",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https",
+    "hostname": "localhost"
+  }
+}
