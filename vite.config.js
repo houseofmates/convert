@@ -13,7 +13,8 @@ export default defineConfig({
   base: "/",
   server: {
     port: 5173,
-    host: true
+    host: true,
+    strictPort: true
   },
   plugins: [
     viteStaticCopy({
